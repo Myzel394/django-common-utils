@@ -1,15 +1,15 @@
-from setuptools import setup, Extension
+from setuptools import setup, find_packages
 
 
 long_description = "This package provides you some utils I think are useful. The package follows the " \
                        "modular-principle, instead of rewriting fields, admin pages etc., you create a mixin and " \
                        "reuse it for your projects!\n\nPlease see the package homepage for the documentation."
 
-current_version = "1.1.0"
+current_version = "1.1.1"
 
 setup(
     name="django-common-utils",
-    packages=["django_common_utils"],
+    packages=find_packages(),
     version=str(current_version),
     license="MIT",
     description="This package provides you some utils I think are useful.",
