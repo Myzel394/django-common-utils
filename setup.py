@@ -5,7 +5,7 @@ long_description = "This package provides you some utils I think are useful. The
                        "modular-principle, instead of rewriting fields, admin pages etc., you create a mixin and " \
                        "reuse it for your projects!\n\nPlease see the package homepage for the documentation."
 
-current_version = "1.1.3"
+current_version = "1.1.4"
 
 setup(
     name="django-common-utils",
@@ -27,12 +27,4 @@ setup(
         "Topic :: Software Development :: Build Tools"
     ],
     requires_python=">=3.8",
-    install_requires=[
-        "django",
-        "django_hint",
-        "pillow",
-        "django-ckeditor",
-        "htmlmin",
-        "beautifulsoup4"
-    ]
 )
