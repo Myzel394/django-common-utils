@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
 
+with open("requirements.txt", "r") as file:
+    requirements = file.read().splitlines()
+
 
 long_description = "This package provides you some utils I think are useful. The package follows the " \
                        "modular-principle, instead of rewriting fields, admin pages etc., you create a mixin and " \
                        "reuse it for your projects!\n\nPlease see the package homepage for the documentation."
 
-current_version = "1.1.1"
+current_version = "1.1.2"
 
 setup(
     name="django-common-utils",
@@ -26,5 +29,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Topic :: Software Development :: Build Tools"
     ],
-    
+    requires_python=">=3.8",
+    install_requires=requirements
 )
