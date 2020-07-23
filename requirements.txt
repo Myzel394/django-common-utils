@@ -1,0 +1,6 @@
+django
+django_hint
+pillow
+django-ckeditor
+htmlmin
+beautifulsoup4
