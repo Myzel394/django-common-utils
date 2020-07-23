@@ -123,7 +123,7 @@ class DescriptionMixin(models.Model):
     ___COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
 ```
 
-Now you will add your actual fields. Simply add your field like you already know.
+Now you will add your actual fields. Simply add your field as you already know it.
 ```python
 from django.db import models
 
@@ -140,8 +140,8 @@ class DescriptionMixin(models.Model):
 ```
 
 Probably you want to add some kwargs to it. Use the `extract_model_kwargs` to
-extract the kwargs and to provide flexibility. This function will use your defined
-kwargs and update them from the corresponding kwargs in `COMMON_KWARGS`.
+extract the kwargs, this also ensures flexibility. This function will use your 
+defined kwargss and update them from the corresponding values in `COMMON_KWARGS`.
 
 `extract_model_kwargs` accepts two arguments: `<class_naem>, <field_name>`. We already
 have the `class_name` stored in `___common_name`, so we simply pass that.
@@ -193,16 +193,18 @@ class DescriptionMixin(models.Model):
     )  # type: str
 ```
 
-You can now import your mixin, but you probably also want to 
+You can now import your mixin, you probably also want to 
 [create a fieldset for the admin page](../fieldsets/README.md).
 
-### Creating a field
+### Reference
+
+#### Creating a field
 
 Simply create your field as you would normally. To pass options, deconstruct the
 result of `extract_model_kwargs`. This function will automatically update your
 default kwargs with the corresponding values from `COMMON_KWARGS`.
 
-### Creating a function
+#### Creating a function
 
 You can create functions as you like. If you want to use overwriteable default
 values, use `extract_model_kwargs`.
@@ -215,7 +217,6 @@ class_kwargs = ek(self.___common_name, "$create_id", {
 })
 ```
 
-### Reference
 #### `extract_model_kwargs`
 
 This is the function you need, if you want to use default values, which can be
