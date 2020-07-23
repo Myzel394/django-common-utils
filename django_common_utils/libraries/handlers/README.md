@@ -36,7 +36,7 @@ This means, that you can either use a single value here (e.g. `str` for the
 field_name), or an iterable containing the values (e.g. `list` with `str`s for 
 field_name).
 
-So these dictionary will be treat the same way:
+So these dictionaries will be treat the same way:
 ```python
 {
     "title": WhiteSpaceStripHandler
