@@ -1,7 +1,7 @@
 # Fieldsets
 
-[After creating your mixin](../models/README.md), you will probably want to create a fieldset
-to follow the modular-principle also in the admin page.
+[After creating your mixin](../models/README.md), you will probably want to create 
+a fieldset to follow the modular-principle also in the admin page.
 
 ## Content
 
@@ -35,8 +35,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 This is the "new" way:
 ```python
-from common_utils.extra.fieldsets import DefaultAdminMixin
-from common_utils.extra.fieldsets.mixins import TitleAdminFieldsetMixin, DescriptionAdminFieldsetMixin
+from django_common_utils.libraries.fieldsets import DefaultAdminMixin
+from django_common_utils.libraries.fieldsets.mixins import TitleAdminFieldsetMixin, DescriptionAdminFieldsetMixin
 
 class ArticleAdmin(DefaultAdminMixin):
     mixins = [
@@ -46,12 +46,16 @@ class ArticleAdmin(DefaultAdminMixin):
 
 ## Usage
 
-Most of the time you will want to inherit from `DefaultAdminMixin`. [INSERT_HERE]();
-Add the `mixins` value with a list containing the fieldset mixins.
+Most of the time you will want to inherit from `DefaultAdminMixin`.
+Add the `mixins` value to the class, containing a list with values as
+the fieldset mixins.
 
-If you have fields in your model, that aren't modular, you can specify them in your
+If you have fields in your model that aren't modular, you can specify them in your
 admin class.
 ```python
+from django_common_utils.libraries.fieldsets import DefaultAdminMixin
+from django_common_utils.libraries.fieldsets.mixins import TitleAdminFieldsetMixin
+
 class ArticleAdmin(DefaultAdminMixin):
     mixins = [
         TitleAdminFieldsetMixin,
@@ -69,22 +73,22 @@ There are 3 ways to inherit other fields.
 
 #### Before inheriting (aka. `!...`)
 By using `!...`, **all** remaining fields will be inserted.
-The fields of each fieldset will be prepended (aka. inserting at index 0).
+The fields of each fieldset will be prepended (aka. inserted at index 0).
 
 ##### Example
 Consider you have these mixins: `[TitleAdminFieldsetMixin, DescriptionFieldsetMixin]`.
-By using `!...`, you will have fields in this ordering:
+By using `!...`, you will have the fields in this ordering:
 ```
 ["description", "title"]
 ```
 
 #### After inheriting (aka. `...!`)
-By using `...°`, **all** remaining fields will be inserted.
+By using `...!`, **all** remaining fields will be inserted.
 The fields of each fieldset will be appended.
 
 ##### Example
 Consider you have these mixins: `[TitleAdminFieldsetMixin, DescriptionFieldsetMixin]`.
-By using `!...`, you will have fields in this ordering:
+By using `...!`, you will have the fields in this ordering:
 ```
 ["title", "description"]
 ```
@@ -100,10 +104,10 @@ The name is the "underscore" class name without any "Admin",
 * `DateTimeAdminFieldsetMixin` -> `date_time`
 * `DatetimeAdminFieldsetMixin` -> `datetime` (Note the small "t" in "Datetime")
 
-When creating your own admin fieldset, you can also specify an own name by
-overriding `self.name`.
+[When creating your own admin fieldset](#creating-own-fieldsets), you can 
+also specify an own name by overriding `self.name`.
 
-If you want to use name inheriting, use the `<name + prefix>` inheritor.
+If you want to use name inheriting, use the `<name>...` format.
 
 #### Example
 ```python
@@ -130,6 +134,8 @@ the fields will look like this:
 
 To create own fieldsets, create a class and inherit from `AdminFieldsetMixin`.
 ```python
+from django_common_utils.libraries.fieldsets import AdminFieldsetMixin
+
 class TitleAdminFieldsetMixin(AdminFieldsetMixin):
     pass
 ```
@@ -138,6 +144,8 @@ Here you can now specify what you want to add.
 Most of the time you will want to add the 
 `get_mixin_fields` and `get_readonly_fields` method.
 ```python
+from django_common_utils.libraries.fieldsets import AdminFieldsetMixin
+
 class TitleAdminFieldsetMixin(AdminFieldsetMixin):
     def get_mixin_fields(self, **_):
         return {
@@ -160,11 +168,12 @@ When inheriting from `DefaultAdminMixin` you have 4 sections:
 * `advanced`
 * `created`
 
-If you want to create own sections, don't inherit from `DefaultAdminMixin`.
+If you want to create own sections, don't inherit from `DefaultAdminMixin`. Instead,
+follow these points:
 
-1. Create your own kind of `DefaultAdminMixin`, by creating a class that inherits
+1. Create your own kind of `DefaultAdminMixin` by creating a class that inherits
 from `AdminMixinsMixin`. 
-2. Overwrite the `get_section` method. 
+2. Overwrite the `get_section` method. The return type must be a `Sections` instance.
 3. `Sections` takes a list of `FieldsetList`.
 In `FieldsetList` you **must** specify `fields`, default fields for the section
 (most of the time an empty list), and `name` (this is used in `fieldset_fields` and 
@@ -174,13 +183,32 @@ You should also specify an initial state for `fieldset_fields`.
 
 Example (copied from `DefaultAdminMixin`):
 ```python
-fieldset_fields = {
-    "default": ["...!"],
-    "extra": ["...!"],
-    "advanced": ["...!"],
-    "created": ["id", "...!"]
-}
+from django_common_utils.libraries.fieldsets import AdminMixinsMixin, Sections, FieldsetList
+
+class CustomAdminMixin(AdminMixinsMixin):
+    def get_section(self) -> Sections:
+        return Sections([
+            FieldsetList(
+                order=0,
+                appearance=None,
+                name="default",
+                fields=[]
+            ),
+            FieldsetList(
+                order=3,
+                appearance="Appearance name in admin",
+                classes=["collapse", ],
+                name="extra",
+                description="Description in admin",
+                fields=["this_field_should_always_appear_here"]
+            )
+        ])
+    
+    fieldset_fields = {
+        "default": ["...!"],
+        "extra": ["...!"],
+    }
 ```
 
-That's all, now inherit from your own class in your admin class and you're ready
+That's all! Now inherit from your own class in your admin class and you're ready
 to go!

@@ -12,6 +12,10 @@ use handlers. Inherit from `HandlerMixin` and specify your handlers for your fie
 ## Example
 
 ```python
+from django_common_utils.libraries.models import TitleMixin
+from django_common_utils.libraries.handlers import HandlerMixin, HandlerDefinitionType
+from django_common_utils.libraries.handlers.mixins import WhiteSpaceStripHandler
+
 class Article(HandlerMixin, TitleMixin):    
     @staticmethod
     def handlers() -> HandlerDefinitionType:
@@ -72,7 +76,7 @@ on deletion, etc...).
 
 To create own handlers, create a class and inherit from `BaseHandlerMixin`.
 ```python
-from common_utils.extra.handlers import BaseHandlerMixin
+from django_common_utils.libraries.handlers import BaseHandlerMixin
 
 class SpaceStripHandler(BaseHandlerMixin):
     pass
@@ -88,7 +92,7 @@ You need to specify these methods:
 | `handle`                  | value - the current value of the field | Handles the value. Here's your actual "handle" | Returns the new value                                                                                     |
 
 ```python
-from common_utils.extra.handlers import BaseHandlerMixin, HandleOn
+from django_common_utils.libraries.handlers import BaseHandlerMixin, HandleOn
 
 class SpaceStripHandler(BaseHandlerMixin):
     @staticmethod

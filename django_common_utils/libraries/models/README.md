@@ -15,6 +15,8 @@ inherit from that abstract model.
 
 This is the "old" way of creating a model with a `title` field:
 ```python
+from django.db import models
+
 class Article(models.Model):
     title = models.CharField(
         verbose_name="Title",
@@ -24,6 +26,8 @@ class Article(models.Model):
 
 This is the "new" way:
 ```python
+from django_common_utils.libraries.models.mixins import TitleMixin
+
 class Article(TitleMixin):
     pass
 ```
@@ -150,7 +154,7 @@ have to type in the field name. Example usage of `extract_model_kwargs`
 
 ```python
 from django.db import models
-from common_utils.extra.models import extract_model_kwargs as ek  # Convention
+from django_common_utils.libraries.models import extract_model_kwargs as ek  # Convention
 
 
 class DescriptionMixin(models.Model):
@@ -171,7 +175,7 @@ This snippet will perfectly work, but hasn't any default values. If you want to 
 default values, pass them as a dict as the third argument of `extract_model_kwargs`.
 ```python
 from django.db import models
-from common_utils.extra.models import extract_model_kwargs as ek
+from django_common_utils.libraries.models import extract_model_kwargs as ek
 
 
 class DescriptionMixin(models.Model):
