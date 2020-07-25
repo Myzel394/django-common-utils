@@ -32,7 +32,7 @@ class AuthorMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_USER_MODEL = settings.AUTH_USER_MODEL
+    _COMMON_USER_MODEL = settings.AUTH_USER_MODEL
     
     authors = models.ManyToManyField(
         **ek(___common_name, "authors", {

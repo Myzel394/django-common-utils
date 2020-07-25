@@ -43,7 +43,7 @@ class SlugMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_SLUG_CHANGE_THRESHOLD = 24
+    _COMMON_SLUG_CHANGE_THRESHOLD = 24
     
     slug = models.SlugField(
         **ek(___common_name, "slug", {
@@ -68,7 +68,7 @@ class SlugMixin(models.Model):
             counter: Optional[int] = None
             
             while True:
-                use_slug = self.slugify(getattr(self, self.___COMMON_SLUG_TARGETED_FIELD()))
+                use_slug = self.slugify(getattr(self, self.__class__._COMMON_SLUG_TARGETED_FIELD()))
                 
                 if type(counter) is int:
                     # Appending counter and increasing it
@@ -90,7 +90,7 @@ class SlugMixin(models.Model):
     
     @staticmethod
     @abstractmethod
-    def ___COMMON_SLUG_TARGETED_FIELD() -> str:
+    def _COMMON_SLUG_TARGETED_FIELD() -> str:
         raise NotImplementedError("Method is not implemented")
     
     @staticmethod
