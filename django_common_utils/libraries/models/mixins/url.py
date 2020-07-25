@@ -91,7 +91,7 @@ class SlugMixin(models.Model):
     @staticmethod
     @abstractmethod
     def ___COMMON_SLUG_TARGETED_FIELD() -> str:
-        raise NotImplementedError(f"{__qualname__} is not implemented")
+        raise NotImplementedError("Method is not implemented")
     
     @staticmethod
     def get_url_field() -> str:

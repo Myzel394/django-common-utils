@@ -19,4 +19,4 @@ class BaseHandlerMixin(ABC):
     
     @abstractmethod
     def handle(self, value):
-        raise NotImplementedError(f"{__qualname__} is not implemented.")
+        raise NotImplementedError("Method is not implemented")
