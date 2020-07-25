@@ -82,9 +82,6 @@ class SlugMixin(models.Model):
                     break
             
             self.slug = use_slug
-        else:
-            if self.slug in used_slugs:
-                raise ValidationError(_("Slug is already used!"))
         
         return super().save(*args, **kwargs)
     
