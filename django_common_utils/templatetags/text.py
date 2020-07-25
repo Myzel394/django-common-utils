@@ -16,7 +16,7 @@ def func_listify(x: List[str]) -> str:
 
 @register.filter(name="textify")
 def func_textify(html: str) -> str:
-    return textify(html)
+    return textify(str(html))
 
 
 @register.filter(name="model_verbose")
@@ -31,12 +31,12 @@ def func_model_verbose_plural(instance: ModelInstance) -> str:
 
 @register.filter(name="field_verbose")
 def func_field_verbose(instance: ModelInstance, field: str) -> str:
-    return field_verbose(instance, field)
+    return field_verbose(instance, str(field))
 
 
 @register.filter(name="field_verbose_plural")
 def func_field_verbose_plural(instance: ModelInstance, field: str) -> str:
-    return field_verbose_plural(instance, field)
+    return field_verbose_plural(instance, str(field))
 
 
 @register.simple_tag(name="format")
@@ -46,7 +46,7 @@ def func_format(string: str, *args, **kwargs) -> str:
 
 @register.filter(name="create_short")
 def func_create_short_filter(string: str, prefix: str) -> str:
-    return create_short(string, prefix=prefix)
+    return create_short(string, prefix=str(prefix))
 
 
 @register.simple_tag(name="create_short")

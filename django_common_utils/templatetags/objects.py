@@ -31,10 +31,10 @@ def as_set(value) -> set:
 @register.simple_tag
 @register.filter
 def get_keys(value: dict) -> KeysView:
-    return value.keys()
+    return dict(value).keys()
 
 
 @register.simple_tag
 @register.filter
 def get_values(value: dict) -> ValuesView:
-    return value.values()
+    return dict(value).values()
