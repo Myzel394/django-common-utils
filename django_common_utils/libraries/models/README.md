@@ -112,7 +112,7 @@ class DescriptionMixin(models.Model):
 ```
 
 If you want to add other options, that aren't needed for a complicated method,
-add them using the convention: `___COMMON_<option_name_in_uppercase>`. Please also
+add them using the convention: `_COMMON_<option_name_in_uppercase>`. Please also
 add a type hint to the field.
 ```python
 from django.db import models
@@ -124,7 +124,7 @@ class DescriptionMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
+    _COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
 ```
 
 Now you will add your actual fields. Simply add your field as you already know it.
@@ -138,7 +138,7 @@ class DescriptionMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
+    _COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
     
     description = models.CharField()  # type: str
 ```
@@ -164,7 +164,7 @@ class DescriptionMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
+    _COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
     
     description = models.CharField(
         **ek(___common_name, "description")
@@ -185,7 +185,7 @@ class DescriptionMixin(models.Model):
         abstract = True
     
     ___common_name = __qualname__
-    ___COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
+    _COMMON_SHORT_DESCRIPTION_LENGTH: int = 85  # Length for the `short_title`
     
     description = models.CharField(
         **ek(___common_name, "description", {

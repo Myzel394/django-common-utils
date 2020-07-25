@@ -240,7 +240,7 @@ class BaseAdminMixinsMixin:
         if obj:
             try:
                 obj.get_url()
-            except NotImplementedError:
+            except (NotImplementedError, AttributeError):
                 logging.warning(f"You forgot to implement some methods on `{model_verbose(obj)}`")
             else:
                 return obj.reversed_url

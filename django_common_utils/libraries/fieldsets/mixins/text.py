@@ -14,7 +14,7 @@ class TitleAdminFieldsetMixin(AdminFieldsetMixin):
             if (date := hasattr(obj, "pub_date")) or (date := hasattr(obj, "edited_at")):
                 now = datetime.now()
                 # Check time range
-                if now - timedelta(hours=obj.___COMMON_TITLE_CHANGE_THRESHOLD) > date:
+                if now - timedelta(hours=obj._COMMON_TITLE_CHANGE_THRESHOLD) > date:
                     return "title"
             else:
                 return "title"
