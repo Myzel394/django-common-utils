@@ -27,7 +27,7 @@ class RegexHandler(BaseHandlerMixin):
 @dataclass
 class WhiteSpaceStripHandler(RegexHandler):
     pattern: str = r"\s+"
-    replacement: str = ""
+    replacement: str = " "
     
     def handle(self, value: str) -> str:
         return super().handle(value).lstrip().rstrip()
