@@ -1,14 +1,11 @@
 from typing import *
 
 __all__ = [
-    "ensure_iteration", "ensure_dict", "combine_fields"
+    "ensure_iteration", "ensure_dict"
 ]
 
 
 # https://stackoverflow.com/a/3655857/9878135
-from django_common_utils.libraries.handlers import HandlerDefinitionType
-
-
 def islambda(x, /) -> bool:
     lambda_func = lambda: 0
     return isinstance(x, type(lambda_func)) and x.__name__ == lambda_func.__name__
