@@ -43,22 +43,22 @@ field_name).
 So these dictionaries will be treat the same way:
 ```python
 {
-    "title": WhiteSpaceStripHandler
+    "title": WhiteSpaceStripHandler()
 }
 ```
 ```python
 {
-    ["title"]: WhiteSpaceStripHandler
+    ["title"]: WhiteSpaceStripHandler()
 }
 ```
 ```python
 {
-    ["title"]: (WhiteSpaceStripHandler, )
+    ["title"]: (WhiteSpaceStripHandler(), )
 }
 ```
 ```python
 {
-    "title": {WhiteSpaceStripHandler, }
+    "title": {WhiteSpaceStripHandler(), }
 }
 ```
 (Keep in mind that sets are unordered. If you pay attention to the ordering, you 

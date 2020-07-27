@@ -8,7 +8,7 @@ from ...typings import *
 
 
 @dataclass
-class HTMLTextOptimizer(BaseHandlerMixin):
+class HTMLOptimizerHTML(BaseHandlerMixin):
     space_after: str = TextOptimizerDefault.space_after
     space_before: str = TextOptimizerDefault.space_before
     no_space_before: str = TextOptimizerDefault.no_space_before
