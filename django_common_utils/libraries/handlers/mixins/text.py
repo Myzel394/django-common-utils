@@ -11,21 +11,23 @@ __all__ = [
 from ..optimizers.text import TextOptimizer
 
 
+@dataclass
 class RegexHandler(BaseHandlerMixin):
-    PATTERN = ""
-    REPLACEMENT = " "
+    pattern: str = ""
+    replacement: str = ""
     
     @staticmethod
     def HANDLE_ON():
         return {HandleOn.CREATION, HandleOn.SAVE}
     
     def handle(self, value: str) -> str:
-        return re.sub(self.__class__.PATTERN, self.__class__.REPLACEMENT, value)
+        return re.sub(self.pattern, self.replacement, value)
 
 
+@dataclass
 class WhiteSpaceStripHandler(RegexHandler):
-    PATTERN = r"\s+"
-    REPLACEMENT = " "
+    pattern: str = r"\s+"
+    replacement: str = ""
     
     def handle(self, value: str) -> str:
         return super().handle(value).lstrip().rstrip()
