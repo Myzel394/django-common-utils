@@ -87,7 +87,7 @@ class BaseAdminMixinsMixin:
                 classes=["collapse", ],
                 name="created",
                 description=_("These fields are visible after this object got created."),
-                fields=[]
+                fields=["id"]
             )
         ])
     

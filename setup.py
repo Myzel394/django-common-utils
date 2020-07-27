@@ -5,7 +5,7 @@ long_description = "This package provides you some utils I think are useful. The
                        "modular-principle, instead of rewriting fields, admin pages etc., you create a mixin and " \
                        "reuse it for your projects!\n\nPlease see the package homepage for the documentation."
 
-current_version = "1.2.5"
+current_version = "1.3.0"
 
 setup(
     name="django-common-utils",

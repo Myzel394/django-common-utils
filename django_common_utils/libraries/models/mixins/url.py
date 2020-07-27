@@ -1,9 +1,8 @@
 import re
 import unicodedata
 from abc import abstractmethod
-from typing import Optional
+from typing import *
 
-from django.core.exceptions import ValidationError
 from django.core.validators import validate_slug
 from django.db import models
 from django.urls import reverse
@@ -15,24 +14,23 @@ from ..get_settings import extract_model_kwargs as ek
 
 
 class UrlBaseMixin:
-    @staticmethod
+    @property
     @abstractmethod
-    def get_url_field() -> str:
-        raise NotImplementedError("Method is not implemented.")
-    
-    @staticmethod
-    @abstractmethod
-    def get_url() -> str:
+    def url(self) -> str:
         """Returns the string to reverse the url"""
         raise NotImplementedError("Method is not implemented.")
     
     @property
-    def url_value(self):
-        return getattr(self, self.get_url_field())
+    def url_args(self) -> list:
+        return []
+    
+    @property
+    def url_kwargs(self) -> Dict[str, Any]:
+        return {}
     
     @property
     def reversed_url(self) -> str:
-        return reverse(self.get_url(), args=(self.url_value,))
+        return reverse(self.url, args=self.url_args, kwargs=self.url_kwargs)
 
 
 class SlugMixin(models.Model):
