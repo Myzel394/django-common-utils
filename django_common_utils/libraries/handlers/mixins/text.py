@@ -21,7 +21,7 @@ class RegexHandler(BaseHandlerMixin):
         return {HandleOn.CREATION, HandleOn.SAVE}
     
     def handle(self, value: str) -> str:
-        return re.sub(self.pattern, self.replacement, value)
+        return re.sub(self.pattern, self.replacement, str(value))
 
 
 @dataclass
