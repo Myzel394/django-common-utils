@@ -21,7 +21,7 @@ class RegexHandler(BaseHandlerMixin):
         return {HandleOn.CREATION, HandleOn.SAVE}
     
     def handle(self, value: str) -> str:
-        return re.sub(self.pattern, self.replacement, str(value))
+        return re.sub(self.pattern, self.replacement, "" if value is None else str(value))
 
 
 @dataclass
@@ -30,7 +30,7 @@ class WhiteSpaceStripHandler(RegexHandler):
     replacement: str = " "
     
     def handle(self, value: str) -> str:
-        return super().handle(value).lstrip().rstrip()
+        return super().handle("" if value is None else str(value)).lstrip().rstrip()
 
 
 @dataclass
@@ -49,7 +49,7 @@ class TextOptimizerHandler(BaseHandlerMixin):
         return TextOptimizer.space_before_text(
             TextOptimizer.space_after_text(
                 TextOptimizer.remove_redundant_space(
-                    value,
+                    "" if value is None else str(value),
                     no_space_after=self.no_space_after,
                     no_space_before=self.no_space_before
                 ),

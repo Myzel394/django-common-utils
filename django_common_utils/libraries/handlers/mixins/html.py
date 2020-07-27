@@ -37,7 +37,7 @@ class HTMLOptimizerHandler(BaseHandlerMixin):
                 TextHTMLOptimizer.html_space_before_text(
                     TextHTMLOptimizer.html_add_attributes_to_tags(
                         TextHTMLOptimizer.html_unwrap(
-                            TextHTMLOptimizer.minify_html(str(value), opts=self.minify_opts),
+                            TextHTMLOptimizer.minify_html("" if value is None else str(value), opts=self.minify_opts),
                             unwrap=self.unwrap
                         ),
                         add_attributes=self.add_attributes
