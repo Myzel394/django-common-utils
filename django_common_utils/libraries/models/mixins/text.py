@@ -30,7 +30,7 @@ class TitleMixin(models.Model, HandlerMixin):
     @staticmethod
     def handlers() -> HandlerDefinitionType:
         return {
-            "title": WhiteSpaceStripHandler
+            "title": WhiteSpaceStripHandler()
         }
     
     @property
@@ -59,7 +59,7 @@ class DescriptionMixin(models.Model):
     @staticmethod
     def handlers() -> HandlerDefinitionType:
         return {
-            "description": WhiteSpaceStripHandler
+            "description": WhiteSpaceStripHandler()
         }
     
     @property

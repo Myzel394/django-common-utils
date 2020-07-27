@@ -18,12 +18,11 @@ def ensure_iteration(value, targeted_type) -> Generator[Any, Any, None]:
     if islambda(targeted_type):
         if targeted_type(value):
             yield value
+    elif type(value) is targeted_type:
+        yield value
     else:
-        if type(value) is targeted_type:
-            yield value
-    
-    for val in value:
-        yield val
+        for val in value:
+            yield val
 
 
 def ensure_dict(value: dict, key_type, value_type) -> Generator[Tuple[Any, Any], Any, None]:

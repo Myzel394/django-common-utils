@@ -17,7 +17,7 @@ __all__ = [
 
 
 def is_valid_handler(value) -> bool:
-    return issubclass(value, BaseHandlerMixin)
+    return issubclass(value.__class__, BaseHandlerMixin)
 
 
 class HandlerMixin:
@@ -61,7 +61,7 @@ class HandlerMixin:
     
     def _apply_handlers(self, action: str) -> None:
         """Applies all specified handlers onto this instance. Fields wil be overwritten!"""
-        applier = ApplyHandler(self, self._get_true_handlers(), action)
+        applier = ApplyHandler(instance=self, handlers=self._get_true_handlers(action))
         
-        for field, value in applier.handle():
+        for field, value in applier.handle().items():
             setattr(self, field, value)

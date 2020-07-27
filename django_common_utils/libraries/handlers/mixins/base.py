@@ -17,6 +17,7 @@ class BaseHandlerMixin(ABC):
     def HANDLE_ON() -> Union[Iterable[str], str]:
         return HandleOn.SAVE
     
+    @staticmethod
     @abstractmethod
-    def handle(self, value):
+    def handle(value):
         raise NotImplementedError("Method is not implemented")

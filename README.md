@@ -6,7 +6,7 @@ For each section there is a README.md available.
 ## Quickstart
 
 1. Install package using `pip install django-common-utils`
-2. Add `django_common_utils` to your `INSTALLED_APPS` in your `settings.py`
+2. Add `django_common_utils.apps.Config` to your `INSTALLED_APPS` in your `settings.py`
 3. Read the [readmes](#reading) for the corresponding part of the package.
 
 ## Principle

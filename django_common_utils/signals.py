@@ -1,14 +1,13 @@
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 
 from .libraries.handlers import HandleOn, HandlerMixin
 
-
 # noinspection PyProtectedMember
-@receiver(post_save)
-def handler_save(sender, instance, created: bool, *args, **kwargs) -> None:
+@receiver(pre_save)
+def handler_save(sender, instance, *args, **kwargs) -> None:
     if issubclass(sender, HandlerMixin):
-        if created:
+        if instance.pk is None:  # Instance is created
             instance._apply_handlers(HandleOn.CREATION)
         else:
             instance._apply_handlers(HandleOn.SAVE)
