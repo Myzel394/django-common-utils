@@ -239,7 +239,7 @@ class BaseAdminMixinsMixin:
     def get_view_on_site_url(self, obj: Optional[ModelInstance] = None) -> Optional[str]:
         if obj:
             try:
-                obj.get_url()
+                obj.url
             except (NotImplementedError, AttributeError):
                 logging.warning(f"You forgot to implement some methods on `{model_verbose(obj)}`")
             else:
