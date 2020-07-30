@@ -27,14 +27,14 @@ class RandomIDMixin(models.Model):
     
     id = models.CharField(
         unique=True,
-        primary_key=True,
         **ek(___common_name, "id", {
             "verbose_name": _("ID"),
             "help_text": _("An unique ID for the object"),
             "null": False,
             "blank": False,
             "editable": False,
-            "max_length": 63
+            "max_length": 63,
+            "primary_key": True
         }),
     )  # type: str
     
