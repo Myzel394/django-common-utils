@@ -5,7 +5,9 @@ long_description = "This package provides you some utils I think are useful. The
                        "modular-principle, instead of rewriting fields, admin pages etc., you create a mixin and " \
                        "reuse it for your projects!\n\nPlease see the package homepage for the documentation."
 
-current_version = "1.3.1"
+current_version = "1.3.2"
+
+# TODO: Admin `obj.get_url` on `get_view_on_site_url` fixen!
 
 setup(
     name="django-common-utils",
