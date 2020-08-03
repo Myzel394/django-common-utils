@@ -19,13 +19,11 @@ class HTMLOptimizerHandler(BaseHandlerMixin):
             self,
             unwrap: Optional[UnwrapDict] = None,
             add_attributes: Optional[AddAttributesDict] = None,
-            minify_opts: Optional[Kwargs] = None,
             *args, **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.unwrap = unwrap if unwrap is not None else HTMLOptimizerDefault.unwrap
         self.add_attributes = add_attributes if add_attributes is not None else HTMLOptimizerDefault.add_attributes
-        self.minify_opts = minify_opts if minify_opts is not None else HTMLOptimizerDefault.minify_opts
     
     @staticmethod
     def HANDLE_ON():
@@ -37,7 +35,7 @@ class HTMLOptimizerHandler(BaseHandlerMixin):
                 TextHTMLOptimizer.html_space_before_text(
                     TextHTMLOptimizer.html_add_attributes_to_tags(
                         TextHTMLOptimizer.html_unwrap(
-                            TextHTMLOptimizer.minify_html("" if value is None else str(value), opts=self.minify_opts),
+                            "" if value is None else str(value),
                             unwrap=self.unwrap
                         ),
                         add_attributes=self.add_attributes

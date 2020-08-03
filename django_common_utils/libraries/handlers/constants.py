@@ -39,12 +39,3 @@ class HTMLOptimizerDefault:
             "rel": "noopener noreferrer"
         }
     }
-    minify_opts: Kwargs = {
-        "remove_comments": True,
-        "remove_empty_space": True,
-        "remove_all_empty_space": False,
-        "reduce_empty_attributes": True,
-        "reduce_boolean_attributes": True,
-        "remove_optional_attribute_quotes": True,
-        "convert_charrefs": True
-    }
