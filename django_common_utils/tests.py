@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.template import Context, Template
 from django.test import TestCase
@@ -44,7 +45,8 @@ class LibrariesTest(TestCase):
         )
         
         # Text
-        assert model_verbose(User) == model_verbose("auth.User") == model_verbose(User.objects.all())
+        assert model_verbose(User) == model_verbose("auth.User") == model_verbose(User.objects.all()) == \
+               model_verbose(settings.AUTH_USER_MODEL)
         
     def test_templatetags(self):
         first_html = """
