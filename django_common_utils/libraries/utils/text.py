@@ -1,22 +1,44 @@
+import inspect
 import re
 from typing import *
 
+from django.db import models
+from django.db.models import QuerySet
 from django.utils.html import strip_tags
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
+from django.apps import apps
 
 from ..typings import ModelInstance
+
+
+def get_model(value) -> ModelInstance:
+    if type(value) is str:
+        return apps.get_model(*value.split(".", 1))
+    
+    if isinstance(value, QuerySet):
+        return value.model
+    
+    if inspect.isclass(value) and issubclass(value, models.Model):
+        return value
+    
+    if issubclass(value.__class__, models.Model):
+        return value
+
+    raise ValueError("Model not found")
 
 
 def create_short(text: str, max_length: int, prefix: str = "...") -> str:
     return f"{text[:max_length]}{prefix}" if len(text) > max_length else text
 
 
-def model_verbose(model: ModelInstance) -> str:
-    return model._meta.verbose_name
+def model_verbose(model) -> str:
+    # noinspection PyProtectedMember
+    return get_model(model)._meta.verbose_name
 
 
-def model_verbose_plural(model: ModelInstance) -> str:
-    return model._meta.verbose_name_plural
+def model_verbose_plural(model) -> str:
+    # noinspection PyProtectedMember
+    return get_model(model)._meta.verbose_name_plural
 
 
 def camelcase_to_underscore(value: str) -> str:

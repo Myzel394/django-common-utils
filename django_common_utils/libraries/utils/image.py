@@ -10,7 +10,8 @@ def generate_image(
         url: str,
         alt: str = "",
         background_color: str = "rgba(0, 0, 0, 0)",
-        title: Optional[str] = None
+        title: Optional[str] = None,
+        attributes: Optional[Dict[str, str]] = None
 ) -> str:
     """
     Generates an <img /> tag with path as picture.
@@ -26,9 +27,14 @@ def generate_image(
 
     :param title: Title property
     :type title: str
+    
+    :param attributes: Attributes for the image tag
+    :type attributes: Dict[str, str]
 
     :return: <img /> tag
     """
+    # Constrain values
+    attributes = attributes or {}
     
     absolute_path = Path(settings.BASE_DIR).joinpath(url[1:])
     extra = {}
@@ -39,10 +45,10 @@ def generate_image(
     try:
         with Image.open(str(absolute_path)) as image:
             extra["width"], extra["height"] = image.size
-    except (FileNotFoundError, PermissionError):
+    except Exception:
         pass
     
-    attributes = " ".join([f"{key}={value}" for key, value in libraries.items()])
+    attributes = " ".join([f'{key}="{value}"' for key, value in attributes.items()])
     
     return mark_safe(
         f'<img src="{url}" alt="{alt}" loading="lazy" style="background-color:{background_color}" {attributes} />'
