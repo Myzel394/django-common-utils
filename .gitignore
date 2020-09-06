@@ -129,3 +129,4 @@ manage.py
 */*.idea
 
 development
+dist
