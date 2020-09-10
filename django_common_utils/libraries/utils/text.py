@@ -13,7 +13,7 @@ from ..typings import ModelInstance
 
 def get_model(value) -> ModelInstance:
     if type(value) is str:
-        return apps.get_model(*value.split(".", 1))
+        return apps.get_model(*value.split(".", 1), require_ready=False)
     
     if isinstance(value, QuerySet):
         return value.model
