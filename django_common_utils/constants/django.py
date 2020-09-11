@@ -2,7 +2,7 @@ from django.core.exceptions import AppRegistryNotReady
 
 try:
     from django.contrib.sites.models import Site
-except RuntimeError:
+except (RuntimeError, AppRegistryNotReady):
     pass
 
 try:
