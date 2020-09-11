@@ -4,9 +4,9 @@ from django.template.defaulttags import register
 
 from ..libraries.typings import ModelInstance
 from ..libraries.utils.text import (
-    create_short, field_verbose, field_verbose_plural, listify, model_verbose, model_verbose_plural,
-    textify,
+    create_short, listify, textify,
 )
+from ..libraries.utils.model import field_verbose, field_verbose_plural, model_verbose, model_verbose_plural
 
 
 @register.filter(name="listify")

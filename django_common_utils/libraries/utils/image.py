@@ -5,6 +5,10 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from PIL import Image
 
+__all__ = [
+    "generate_image"
+]
+
 
 def generate_image(
         url: str,

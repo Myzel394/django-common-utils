@@ -2,13 +2,10 @@ from dataclasses import dataclass
 from typing import *
 
 from .typings import *
-from ..typings import ModelInstance
 
 __all__ = [
     "ApplyHandler"
 ]
-
-from ..utils import iteration
 
 
 @dataclass

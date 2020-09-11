@@ -4,7 +4,8 @@ from django.template import Context, Template
 from django.test import TestCase
 from typing import *
 
-from django_common_utils.libraries.utils import  generate_image, model_verbose
+from django_common_utils.libraries.utils import generate_image
+from django_common_utils.libraries.utils.model import model_verbose
 from django_common_utils.libraries.utils.common import combine_fields
 
 

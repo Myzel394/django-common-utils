@@ -1,9 +1,13 @@
+from typing import *
+
 from django.template.defaulttags import register
-from django_hint import QueryType
+
+if TYPE_CHECKING:
+    from django_hint import *
 
 
 @register.filter
-def slice_modulo(qs: QueryType, mod: int) -> QueryType:
+def slice_modulo(qs: "QueryType", mod: int) -> "QueryType":
     """Slices queryset to a specific modulo"""
     # Constrain values
     mod: int = int(mod)

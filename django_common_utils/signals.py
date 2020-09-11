@@ -1,9 +1,10 @@
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 
-from .libraries.handlers import HandleOn, HandlerMixin
+from .libraries.handlers import HandlerMixin
+from .libraries.handlers.constants import HandleOn
 
-# noinspection PyProtectedMember
+
 @receiver(pre_save)
 def handler_save(sender, instance, *args, **kwargs) -> None:
     if issubclass(sender, HandlerMixin):

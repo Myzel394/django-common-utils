@@ -9,6 +9,10 @@ from ..constants import AddAttributesDict, HTMLOptimizerDefault, UnwrapDict
 from ...typings import Kwargs
 from ...utils import iteration
 
+__all__ = [
+    "TextHTMLOptimizer"
+]
+
 
 class TextHTMLOptimizer:
     """

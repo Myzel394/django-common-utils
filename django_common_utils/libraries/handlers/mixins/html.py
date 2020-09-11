@@ -4,7 +4,10 @@ from typing import *
 from .base import BaseHandlerMixin
 from ..constants import AddAttributesDict, HandleOn, HTMLOptimizerDefault, TextOptimizerDefault, UnwrapDict
 from ..optimizers.html import TextHTMLOptimizer
-from ...typings import *
+
+__all__ = [
+    "HTMLOptimizerHandler"
+]
 
 
 @dataclass

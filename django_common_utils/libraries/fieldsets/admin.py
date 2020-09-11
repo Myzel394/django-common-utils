@@ -6,11 +6,16 @@ from django.contrib import admin
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models.options import Options
 from django.http import HttpRequest
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from .sections import FieldsetList, Sections
 from ..typings import *
-from ..utils import camelcase_to_underscore, model_verbose
+from ..utils import camelcase_to_underscore
+from ..utils.model import model_verbose
+
+__all__ = [
+    "AdminFieldsetMixin", "BaseAdminMixinsMixin", "AdminMixinsMixin"
+]
 
 
 class AdminFieldsetMixin:

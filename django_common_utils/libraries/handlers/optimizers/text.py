@@ -1,6 +1,10 @@
 import re
 
-from ...handlers import TextOptimizerDefault
+from ..constants import TextOptimizerDefault
+
+__all__ = [
+    "TextOptimizer"
+]
 
 
 class TextOptimizer:

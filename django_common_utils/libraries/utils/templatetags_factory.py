@@ -1,6 +1,10 @@
 from types import FunctionType, ModuleType
 from typing import *
 
+__all__ = [
+    "create_func", "create_name", "iter_module"
+]
+
 
 def create_func(func: FunctionType) -> FunctionType:
     """Creates the actual function"""

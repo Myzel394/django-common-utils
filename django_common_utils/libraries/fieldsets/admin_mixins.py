@@ -1,5 +1,9 @@
 from django.contrib import admin
 
+__all__ = [
+    "AutomaticUserAssociationAdminMixin"
+]
+
 
 class AutomaticUserAssociationAdminMixin(admin.ModelAdmin):
     def save_model(self, request, obj, *args, **kwargs):

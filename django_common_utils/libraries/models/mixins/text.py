@@ -1,10 +1,15 @@
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
-from ...handlers import HandlerDefinitionType, HandlerMixin
-from ...handlers.mixins import WhiteSpaceStripHandler
+
+from ...handlers import HandlerMixin, WhiteSpaceStripHandler
+from ...handlers.typings import HandlerDefinitionType
 from ...utils.text import create_short
 from ..get_settings import extract_model_kwargs as ek
+
+__all__ = [
+    "TitleMixin", "DescriptionMixin"
+]
 
 
 class TitleMixin(models.Model, HandlerMixin):

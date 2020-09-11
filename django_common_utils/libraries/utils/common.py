@@ -1,7 +1,6 @@
 from collections import defaultdict
 
-from django_common_utils.libraries.handlers import HandlerDefinitionType
-from django_common_utils.libraries.utils import ensure_dict
+from .iteration import ensure_dict
 
 __all__ = [
     "combine_fields"

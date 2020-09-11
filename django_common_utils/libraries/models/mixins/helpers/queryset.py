@@ -1,6 +1,11 @@
 from django.db import models
 
 
+__all__ = [
+    "CustomQuerySetManager", "CustomQuerySet"
+]
+
+
 class CustomQuerySetManager(models.Manager):
     """A re-usable Manager to access a custom QuerySet"""
     

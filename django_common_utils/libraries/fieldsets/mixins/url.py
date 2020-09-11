@@ -3,6 +3,10 @@ from typing import *
 
 from ..admin import AdminFieldsetMixin
 
+__all__ = [
+    "SlugAdminFieldsetMixin"
+]
+
 
 class SlugAdminFieldsetMixin(AdminFieldsetMixin):
     def get_readonly_fields(self, obj=None, **_):

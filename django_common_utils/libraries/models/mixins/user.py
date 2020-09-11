@@ -1,10 +1,18 @@
+from typing import *
+
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext as _
-from django_hint import QueryType
+from django.utils.translation import gettext_lazy as _
 
-from ...utils.text import model_verbose
+from ...utils.model import model_verbose
 from ..get_settings import extract_model_kwargs as ek
+
+if TYPE_CHECKING:
+    from django_hint import *
+
+__all__ = [
+    "AutomaticUserAssociationCreationMixin", "AuthorMixin"
+]
 
 
 class AutomaticUserAssociationCreationMixin(models.Model):

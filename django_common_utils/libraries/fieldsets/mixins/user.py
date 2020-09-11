@@ -1,5 +1,9 @@
 from ..admin import AdminFieldsetMixin
 
+__all__ = [
+    "AuthorAdminFieldsetMixin", "AutomaticUserAssociationCreationFieldsetMixin"
+]
+
 
 class AuthorAdminFieldsetMixin(AdminFieldsetMixin):
     def get_readonly_fields(self, obj=None, **_):

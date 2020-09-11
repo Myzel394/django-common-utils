@@ -1,6 +1,10 @@
 from collections import Iterable
 from typing import List, Optional, Union
 
+__all__ = [
+    "FieldsetList", "Sections"
+]
+
 
 def flat_list(lst: list) -> list:
     flt_lst = []

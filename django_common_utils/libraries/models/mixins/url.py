@@ -7,10 +7,14 @@ from django.core.validators import validate_slug
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from ....constants import RFC
 from ..get_settings import extract_model_kwargs as ek
+
+__all__ = [
+    "UrlBaseMixin", "SlugMixin"
+]
 
 
 class UrlBaseMixin:

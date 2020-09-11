@@ -3,6 +3,10 @@ from typing import Optional
 
 from ..admin import AdminFieldsetMixin
 
+__all__ = [
+    "TitleAdminFieldsetMixin", "DescriptionAdminFieldsetMixin",
+]
+
 
 class TitleAdminFieldsetMixin(AdminFieldsetMixin):
     def get_readonly_fields(self, obj=None, **_) -> Optional[str]:
@@ -30,14 +34,3 @@ class DescriptionAdminFieldsetMixin(AdminFieldsetMixin):
         return {
             "default": ["description", ]
         }
-
-
-class TitleAdminFieldsetMixin(AdminFieldsetMixin):
-    def get_mixin_fields(self, **_):
-        return {
-            "default": ["title"]
-        }
-    
-    def get_readonly_fields(self, obj=None, **_):
-        if obj:
-            return "title"
