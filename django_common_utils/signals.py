@@ -1,8 +1,8 @@
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 
-from .libraries.handlers import HandlerMixin
 from .libraries.handlers.constants import HandleOn
+from .libraries.handlers.models import HandlerMixin
 
 
 @receiver(pre_save)
