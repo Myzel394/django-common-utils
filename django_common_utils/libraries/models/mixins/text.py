@@ -2,7 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-from ...handlers import HandlerMixin, WhiteSpaceStripHandler
+from ...handlers.mixins import WhiteSpaceStripHandler
+from ...handlers.models import HandlerMixin
 from ...handlers.typings import HandlerDefinitionType
 from ...utils.text import create_short
 from ..get_settings import extract_model_kwargs as ek
