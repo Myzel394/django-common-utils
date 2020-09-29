@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from ..get_settings import extract_model_kwargs as ek
 
 __all__ = [
-    "CreationDateMixin", "models"
+    "CreationDateMixin", "EditCreationDateMixin"
 ]
 
 

@@ -13,14 +13,14 @@ use handlers. Inherit from `HandlerMixin` and specify your handlers for your fie
 
 ```python
 from django_common_utils.libraries.models import TitleMixin
-from django_common_utils.libraries.handlers import HandlerMixin, HandlerDefinitionType
+from django_common_utils.libraries.handlers import HandlerMixin
 from django_common_utils.libraries.handlers.mixins import WhiteSpaceStripHandler
 
 class Article(HandlerMixin, TitleMixin):    
     @staticmethod
-    def handlers() -> HandlerDefinitionType:
+    def handlers():
         return {
-            "title": WhiteSpaceStripHandler
+            "title": WhiteSpaceStripHandler()
         }
 ```
 
