@@ -15,12 +15,12 @@ class TitleAdminFieldsetMixin(AdminFieldsetMixin):
         # alternative_title will be turned read-only, if pub_date is not in the allowed range and alternative_title
         # is already set.
         if obj:
-            if (date := hasattr(obj, "pub_date")) or (date := hasattr(obj, "edited_at")):
+            try:
+                date = obj.pub_date or obj.edited_at
                 now = datetime.now()
-                # Check time range
                 if now - timedelta(hours=obj._COMMON_TITLE_CHANGE_THRESHOLD) > date:
                     return "title"
-            else:
+            except AttributeError:
                 return "title"
     
     def get_mixin_fields(self, **_) -> dict:
